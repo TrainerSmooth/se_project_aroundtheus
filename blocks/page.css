@@ -2,6 +2,7 @@
   background-color: black;
   color: white;
   font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 33px;
 }
 
 .page__section {
@@ -18,9 +19,13 @@
   min-height: 100vh;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 320px) {
   .page__section {
-    margin: 0 20px;
-    max-width: calc(100%-40px);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .page {
+    font-size: 24px;
   }
 }

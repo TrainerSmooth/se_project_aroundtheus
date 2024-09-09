@@ -12,10 +12,12 @@ This project is made so all the elements are displayed correctly on popular scre
 
 **Figma**
 
-- [Link to the project on Github Pages]https://trainersmooth.github.io/se_project_aroundtheus/index.html
+- [Link to the project on Github Pages] https://trainersmooth.github.io/se_project_aroundtheus/
 
 **Images**
 
 The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
 
 Good luck and have fun!
+
+link to video: https://drive.google.com/file/d/1ejPY76243P9hvlJg34phCOjiqRth7PXT/view?usp=sharing
