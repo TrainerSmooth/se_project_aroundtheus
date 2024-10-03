@@ -28,7 +28,12 @@ const initialCards = [
 /* ---------------------------------------------------------------------------------- */
 /*                                    Elements                                       */
 /* ---------------------------------------------------------------------------------- */
+// Wrappers
+const cardsWrap = document.querySelector(".cards__list");
+const modal = document.querySelector(".modal");
+const profileFormEl = document.querySelector(".profile__form");
 
+// Buttons and other DOM nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditCloseButton = profileEditModal.querySelector(".modal__close");
@@ -80,7 +85,7 @@ profileEditCloseButton.addEventListener("click", closePopup);
 
 profileEditForm.addEventListener("submit", handleProfileEditFormSubmit);
 
+// for loop that inserts a card
 initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-  cardlistEl.prepend(cardElement);
+  cardsWrap.prepend(getCardElement(cardData));
 });

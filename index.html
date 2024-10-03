@@ -107,7 +107,7 @@
         <p class="copyright__text">© 2022 Around The U.S.</p>
       </footer>
     </div>
-
+    <!--Edit modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close"></button>
@@ -126,6 +126,31 @@
             class="modal__input"
             placeholder="Description"
             id="profile-description-input"
+          />
+          <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!--Add card modal -->
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <form class="modal__form" id="add-card-form">
+          <p class="modal__heading">New place</p>
+          <input
+            type="text"
+            name="Title"
+            class="modal__input"
+            placeholder="Title"
+            id="input-type-title"
+          />
+          <input
+            type="text"
+            name="url"
+            class="modal__input"
+            placeholder="Image URL"
+            id="imput-type-url"
           />
           <button class="modal__button">Save</button>
         </form>
