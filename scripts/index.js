@@ -30,7 +30,7 @@ const initialCards = [
 /* ---------------------------------------------------------------------------------- */
 // Wrappers
 const cardsWrap = document.querySelector(".cards__list");
-const modal = document.querySelector(".modal");
+const editProfileModal = document.querySelector("#profile-edit-modal");
 const profileFormEl = document.querySelector(".profile__form");
 
 // Buttons and other DOM nodes
@@ -50,7 +50,7 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 /*Functions*/
 function closePopup() {
-  profileEditModal.classList.remove("modal_opened");
+  editProfileModal.classList.remove("modal_opened");
 }
 
 function getCardElement(cardData) {
@@ -78,7 +78,7 @@ function handleProfileEditFormSubmit(evt) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
+  editProfileModal.classList.add("modal_opened");
 });
 
 profileEditCloseButton.addEventListener("click", closePopup);
