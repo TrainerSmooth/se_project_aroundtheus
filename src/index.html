@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <title>Around the U.S</title>
+    <link href="./pages/index.css" rel="stylesheet" />
+  </head>
+  <body class="page">
+    <div class="page__content">
+      <header class="header page__section">
+        <img
+          src="./images/header.svg"
+          alt="Around the U.S."
+          class="header__logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile page__section">
+          <img src="./images/oldman.jpg" alt="Avatar" class="profile__image" />
+          <div class="profile__info">
+            <h1 class="profile__title">Jacques Cousteau</h1>
+            <button
+              class="profile__edit-button"
+              id="profile-edit-button"
+              type="button"
+            ></button>
+            <p class="profile__description">Explorer</p>
+          </div>
+          <button
+            class="profile__add-button"
+            type="button"
+            id="profile-add-button"
+          ></button>
+        </section>
+
+        <section class="cards page__section">
+          <ul class="cards__list"></ul>
+        </section>
+      </main>
+      <footer class="copyright page__section">
+        <p class="copyright__text">© 2022 Around The U.S.</p>
+      </footer>
+    </div>
+    <!--Edit modal -->
+    <div class="modal" id="profile-edit-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="profile-modal-close"></button>
+        <form class="modal__form" name="profile-form">
+          <p class="modal__heading">Edit profile</p>
+          <label class="modal__form-container">
+            <input
+              type="text"
+              name="title"
+              class="modal__input"
+              placeholder="Name"
+              id="profile-title-input"
+              maxlength="40"
+              minlength="2"
+              required
+            />
+            <span class="modal__error" id="profile-title-input-error"></span>
+          </label>
+
+          <label class="modal__form-container">
+            <input
+              type="text"
+              name="description"
+              class="modal__input"
+              placeholder="Description"
+              id="profile-description-input"
+              maxlength="200"
+              minlength="2"
+              required
+            />
+            <span
+              class="modal__error"
+              id="profile-description-input-error"
+            ></span>
+          </label>
+          <button class="modal__button" type="submit-button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!--Add card modal -->
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="add-card-modal-close"></button>
+        <form class="modal__form" id="add-card-form">
+          <p class="modal__heading">New place</p>
+          <label class="modal__form-container">
+            <input
+              type="text"
+              name="Title"
+              class="modal__input modal__input_type_title"
+              placeholder="Title"
+              id="input-type-title"
+              maxlength="30"
+              minlength="1"
+              required
+            />
+            <span class="modal__error" id="input-type-title-error"></span>
+          </label>
+
+          <label class="modal__form-container">
+            <input
+              type="url"
+              name="url"
+              class="modal__input modal__input_type_url"
+              placeholder="Image URL"
+              id="input-type-url"
+              required
+            />
+            <span class="modal__error" id="input-type-url-error"></span>
+          </label>
+
+          <button class="modal__button" type="submit-button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- image preview -->
+    <div class="modal" id="image-preview-modal">
+      <div class="modal__preview-container">
+        <button
+          type="button"
+          class="modal__close"
+          id="modal-image-preview-button"
+        ></button>
+        <img class="modal__image-preview" src="" alt="" />
+        <p class="modal__caption"></p>
+      </div>
+    </div>
+
+    <template id="card-template">
+      <li class="card">
+        <img src="" class="card__image" alt="" />
+        <button class="card__trash-button" type="button"></button>
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button
+            type="button"
+            class="card__like-button"
+            id="card-like-button"
+          ></button>
+        </div>
+      </li>
+    </template>
+    <script src="./scripts/index.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+.copyright__text {
+  color: #545454;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 21.78px;
+  font-weight: 400;
+  max-width: 880px;
+  margin-bottom: 60px;
+  margin-top: 67px;
+}
+
+@media screen and (max-width: 768px) {
+  .copyright__text {
+    font-size: 14px;
+    line-height: 16.94px;
+    max-width: 250px;
+    margin-top: 48px;
+    margin-left: 19px;
+    margin-bottom: 36px;
+  }
+}
