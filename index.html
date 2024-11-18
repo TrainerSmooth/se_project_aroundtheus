@@ -32,75 +32,15 @@
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
-          <button class="profile__add-button" type="button"></button>
+          <button
+            class="profile__add-button"
+            type="button"
+            id="profile-add-button"
+          ></button>
         </section>
+
         <section class="cards page__section">
-          <ul class="cards__list">
-            <template id="card-template">
-              <li class="card">
-                <img
-                  src="./images/yosemite.jpg"
-                  alt="Yosemite"
-                  class="card__image"
-                />
-                <div class="card__description">
-                  <h2 class="card__title">Yosemite Valley</h2>
-                  <button class="card__like-button" type="button"></button>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  src="./images/lake-louise.jpg"
-                  alt="lake-louise"
-                  class="card__image"
-                />
-                <div class="card__description">
-                  <h2 class="card__title">Lake Louise</h2>
-                  <button class="card__like-button"></button>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  src="./images/bald-mountains.jpg"
-                  alt="bald-mountains"
-                  class="card__image"
-                />
-                <div class="card__description">
-                  <h2 class="card__title">Bald Mountains</h2>
-                  <button class="card__like-button"></button>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  src="./images/latemar.jpg"
-                  alt="latemar"
-                  class="card__image"
-                />
-                <div class="card__description">
-                  <h2 class="card__title">Latemar</h2>
-                  <button class="card__like-button"></button>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  src="./images/vanoise.jpg"
-                  alt="vanoise"
-                  class="card__image"
-                />
-                <div class="card__description">
-                  <h2 class="card__title">Vanoise National Park</h2>
-                  <button class="card__like-button"></button>
-                </div>
-              </li>
-              <li class="card">
-                <img src="./images/lago.jpg" alt="lago" class="card__image" />
-                <div class="card__description">
-                  <h2 class="card__title">Lao di Braies</h2>
-                  <button class="card__like-button"></button>
-                </div>
-              </li>
-            </template>
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <footer class="copyright page__section">
@@ -111,7 +51,7 @@
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close"></button>
-        <form class="modal__form">
+        <form class="modal__form" name="profile-form">
           <p class="modal__heading">Edit profile</p>
           <input
             type="text"
@@ -141,14 +81,14 @@
           <input
             type="text"
             name="Title"
-            class="modal__input"
+            class="modal__input modal__input_type_title"
             placeholder="Title"
             id="input-type-title"
           />
           <input
             type="text"
             name="url"
-            class="modal__input"
+            class="modal__input modal__input_type_url"
             placeholder="Image URL"
             id="input-type-url"
           />
@@ -157,6 +97,33 @@
       </div>
     </div>
 
+    <!-- image preview -->
+    <div class="modal" id="image-preview-modal">
+      <div class="modal__preview-container">
+        <button
+          type="button"
+          class="modal__close"
+          id="modal-image-preview-button"
+        ></button>
+        <img class="modal__image-preview" src="" alt="" />
+        <p class="modal__caption"></p>
+      </div>
+    </div>
+
+    <template id="card-template">
+      <li class="card">
+        <img src="" class="card__image" alt="" />
+        <button class="card__trash-button" type="button"></button>
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button
+            type="button"
+            class="card__like-button"
+            id="card-like-button"
+          ></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
