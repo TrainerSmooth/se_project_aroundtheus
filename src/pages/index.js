@@ -7,19 +7,46 @@ import UserInfo from "../components/userinfo.js";
 import * as constants from "../utils/constants.js";
 import PopupWithImage from "../components/PopupwithImage.js";
 
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+  },
+  {
+    name: "Lao di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  },
+];
+
 //form validation//
-const validator = new FormValidator(settings, formElement);
-var settings = {
-  formSelector: ".modal__container",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_inactive",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-  formElement: formElement,
+
+const settings = {
+  formSelector: ".modalcontainer",
+  inputSelector: ".modalinput",
+  submitButtonSelector: ".modalsave-button",
+  inactiveButtonClass: "modalsave-button_inactive",
+  inputErrorClass: "modalinput_type_error",
+  errorClass: "modalerror_visible",
 };
 
-var formElement = document.querySelector(".modal__form");
+const formElement = document.querySelector(".modal__form");
+const validator = new FormValidator(settings, formElement);
 
 //UserInfo JS//
 const userInfo = new UserInfo({
