@@ -5,6 +5,21 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/userinfo.js";
 import * as constants from "../utils/constants.js";
+import PopupWithImage from "../components/PopupwithImage.js";
+
+//form validation//
+const validator = new FormValidator(settings, formElement);
+var settings = {
+  formSelector: ".modal__container",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_inactive",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+  formElement: formElement,
+};
+
+var formElement = document.querySelector(".modal__form");
 
 //UserInfo JS//
 const userInfo = new UserInfo({
@@ -33,12 +48,6 @@ profileEditPopup.setEventListeners();
 
 const card = new Card(constants.initialCards);
 
-//PopupWithConfirmation
-const modalWithConfirm = new PopupWithConfirmation("#delete-image-modal");
-document.addEventListener("DOMContentLoaded", () => {
-  modalWithConfirm.setEventListeners();
-});
-
 //Section JS//
 const sectionCards = new Section(
   {
@@ -49,11 +58,6 @@ const sectionCards = new Section(
   },
   ".cards__images"
 );
-//sectionCards.renderItems(constants.initialCards); delete later\
-
-api.getInitialCards().then((cards) => {
-  sectionCards.renderItems(constants.initialCards);
-});
 
 //Functions//
 function createCard(cardData) {
@@ -121,13 +125,7 @@ constants.cardDelete.forEach((button) => {
 });
 
 //EnableValidation
-const editProfileFormValidator = new FormValidator(
-  constants.settings,
-  profileEditForm
-);
-const addCardFormValidator = new FormValidator(
-  constants.settings,
-  addNewCardForm
-);
+const editProfileFormValidator = new FormValidator(constants.settings);
+const addCardFormValidator = new FormValidator(constants.settings);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();

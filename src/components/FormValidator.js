@@ -9,6 +9,13 @@ class FormValidator {
     this._formEl = formEl;
   }
 
+  enableValidation() {
+    this._formEl.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+    this._setEventListeners();
+  }
+
   _showInputError(inputEl) {
     const errorMsg = this._formEl.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.add(this._inputErrorClass);
@@ -63,14 +70,6 @@ class FormValidator {
         this._toggleButton();
       });
     });
-  }
-
-  enableValidation() {
-    this._formEl.addEventListener("submit", (e) => {
-      e.preventDefault();
-    });
-
-    this._setEventListeners();
   }
 }
 
