@@ -13,7 +13,12 @@ class FormValidator {
     this._formEl.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    this._setEventListeners();
+    this._inputEls = [...this._formEl.querySelectorAll(".profile__info", true)];
+    this._submitButton = this._formEl.querySelector(".modal__button", true);
+    this._inputEls.forEach((inputEl) => {
+      this._checkInputValidity(inputEl);
+    });
+    this._setEventListeners(console.log(""));
   }
 
   _showInputError(inputEl) {

@@ -157,6 +157,6 @@ const editProfileFormValidator = new FormValidator(
   constants.settings,
   profileForm
 );
-const addCardFormValidator = new FormValidator(constants.settings);
+const addCardFormValidator = new FormValidator(constants.settings, profileForm);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
