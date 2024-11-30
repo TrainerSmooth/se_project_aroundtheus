@@ -152,7 +152,11 @@ constants.cardDelete.forEach((button) => {
 });
 
 //EnableValidation
-const editProfileFormValidator = new FormValidator(constants.settings);
+const profileForm = document.forms["profile-form"];
+const editProfileFormValidator = new FormValidator(
+  constants.settings,
+  profileForm
+);
 const addCardFormValidator = new FormValidator(constants.settings);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();

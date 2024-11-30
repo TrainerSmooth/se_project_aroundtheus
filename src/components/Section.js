@@ -1,4 +1,4 @@
-export default class Popup {
+export default class Section {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscape.bind(this);
