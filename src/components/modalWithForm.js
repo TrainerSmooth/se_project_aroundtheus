@@ -1,10 +1,10 @@
-import Popup from "./Popup.js";
+import modal from "./modal.js";
 
-export class PopupWithForm extends Popup {
-  constructor({ popupSelector }, handleFormSubmit) {
-    super({ popupSelector });
+export class modalWithForm extends modal {
+  constructor({ modalSelector }, handleFormSubmit) {
+    super({ modalSelector });
     this._handleFormSubmit = handleFormSubmit;
-    this._formElement = this._popupElement.querySelector(".modal__container");
+    this._formElement = this._modalElement.querySelector(".modal__container");
     this._inputList = this._formElement.querySelectorAll(".modal__input");
   }
 
@@ -32,4 +32,4 @@ export class PopupWithForm extends Popup {
   }
 }
 
-export default PopupWithForm;
+export default modalWithForm;

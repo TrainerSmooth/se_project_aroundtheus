@@ -1,5 +1,3 @@
-
-
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -42,9 +40,9 @@ export const profileTitle = document.querySelector(".profile__title");
 export const profileDescription = document.querySelector(
   ".profile__description"
 );
-export const profileInputName = document.querySelector("#profile-input-name");
+export const profileInputName = document.querySelector("#profile-input-title");
 export const profileInputDescription = document.querySelector(
-  "#profile-input-description"
+  "#profile-description-input"
 );
 
 //Card Elements//
