@@ -45,7 +45,7 @@ const settings = {
   errorClass: "modalerror_visible",
 };
 
-const formElement = document.querySelector("#modal_form");
+const formElement = document.querySelector(".modal_form");
 const validator = new FormValidator(settings, formElement);
 
 //UserInfo JS//

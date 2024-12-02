@@ -13,9 +13,7 @@ class FormValidator {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    this._inputEls = [
-      ...this._formElement.querySelectorAll(".profile__info", true),
-    ];
+    this._inputEls = [...this._formElement.querySelectorAll(".profile__info")];
     this._submitButton = this._formElement.querySelector(
       ".modal__button",
       true
