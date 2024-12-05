@@ -89,6 +89,8 @@ const sectionCards = new Section(
 //Functions//
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleCardImageClick);
+  const cardElement = card.getTemplate();
+  cardSection.addItem(cardElement);
   return card.generateCard();
 }
 
@@ -157,6 +159,9 @@ const editProfileFormValidator = new FormValidator(
   constants.settings,
   profileForm
 );
-const addCardFormValidator = new FormValidator(constants.settings);
+
+const addCardForm = document.forms["add-card-form"];
+const addCardFormValidator = new FormValidator(constants.settings, addCardForm);
+
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
