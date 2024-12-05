@@ -20,56 +20,34 @@ export const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
   },
   {
-    name: "Lago di Braies",
+    name: "Lao di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
 
-export const settings = {
+export const cardAddForm = document.querySelector("#add-card-modal");
+export const profileEditForm = document.querySelector("#profile-edit-modal");
+export const cardListEl = document.querySelector(".cards__list");
+
+export const selectors = {
+  cardTemplate: "#card-template",
+  cardSelection: ".cards__list",
+  // any other selectors you might need
+};
+
+// FormValidation
+export const validationSettings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button-disabled",
+  inactiveButtonClass: "modal__button_disabled",
+
   inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error",
+  errorClass: "modal__error_visible",
 };
 
-//Profile Elements//
-export const profileEditModal = document.querySelector("#profile-edit-modal");
-export const profileTitle = document.querySelector(".profile__title");
-export const profileDescription = document.querySelector(
-  ".profile__description"
-);
-export const profileInputName = document.querySelector("#profile-input-title");
-export const profileInputDescription = document.querySelector(
-  "#profile-description-input"
-);
+console.log(cardData);
 
-//Card Elements//
-export const cardsWrap = document.querySelector(".cards__image");
-export const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-export const cardDelete = document.querySelectorAll("card__trash-button");
-
-//New Card Elements//
-export const addNewCardModal = document.querySelector("#add-card-modal");
-export const newCardInputTitle = addNewCardModal.querySelector(
-  "#profile-title-input"
-);
-export const newCardInputUrl = addNewCardModal.querySelector("#input-type-url");
-
-//View Image Elements
-export const openImageModalDescription = document.querySelector(
-  ".modal__description"
-);
-export const openImageModal = document.querySelector(".modal__image");
-
-//Buttons//
-export const profileEditButton = document.querySelector("#profile-edit-button");
-export const profileModalClose = profileEditModal.querySelector(
-  "#profile-modal-close"
-);
-export const addNewCardButton = document.querySelector(".profile__add-button");
-export const newCardModalClose =
-  addNewCardModal.querySelector("#card-modal-close");
-export const openImageClose = document.querySelector("#modal__close");
+export const profileModal = new modalWithForm({
+  modalSelector: "#profile-edit-modal",
+});

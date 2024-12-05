@@ -6,22 +6,7 @@ class FormValidator {
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
-    this._formElement = formEl;
-  }
-
-  enableValidation() {
-    this._formElement.addEventListener("submit", (e) => {
-      e.preventDefault();
-    });
-    this._inputEls = [...this._formElement.querySelectorAll(".profile__info")];
-    this._submitButton = this._formElement.querySelector(
-      ".modal__button",
-      true
-    );
-    this._inputEls.forEach((inputEl) => {
-      this._checkInputValidity(inputEl);
-    });
-    this._setEventListeners(console.log(""));
+    this._formEl = formEl;
   }
 
   _showInputError(inputEl) {
@@ -68,12 +53,8 @@ class FormValidator {
   }
 
   _setEventListeners() {
-    this._inputEls = [
-      ...this._formElement.querySelectorAll(this._inputSelector),
-    ];
-    this._submitButton = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
+    this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
+    this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
     this.disableButton();
 
     this._inputEls.forEach((inputEl) => {
@@ -82,6 +63,14 @@ class FormValidator {
         this._toggleButton();
       });
     });
+  }
+
+  enableValidation() {
+    this._formEl.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    this._setEventListeners();
   }
 }
 

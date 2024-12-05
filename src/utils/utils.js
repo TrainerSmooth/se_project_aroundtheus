@@ -1,57 +1,26 @@
-export default class utils {
-  constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
-  }
+import { handleEscUpEsc } from "core-js/core/object";
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
-    }).then((res) => res.json());
-  }
+export const imageModalWindow = document.querySelector(".modal__image");
+export const imageCaption = imageModalWindow.querySelector(".modal__caption");
 
-  createCard({ name, link }) {
-    return fetch(`${this._baseUrl}/cards`, {
-      method: "POST",
-      headers: this._headers,
-      body: JSON.stringify({ name, link }),
-    });
-  }
+export const closeModal = (modalWindow) => {
+  modalWindow.classList.remove("modal_opened");
+  document.removeEventListener("keyup", handleEscUp);
+};
 
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: "DELETE",
-      headers: this._headers,
-    });
-  }
+export const openModal = (modalWindow) => {
+  modalWindow.classList.add("modal_opened");
+  document.addEventListener("keyup", handleEscUpEsc);
+};
 
-  likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    });
-  }
+export const handleEscUp = (evt) => {
+  evt.preventDefault();
+  isEscEvent(evt, closeModal);
+};
 
-  dislikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-    });
+export const isEscEvent = (evt, action) => {
+  const activemodal = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
+    action(activemodal);
   }
-
-  updateProfile({ name, description }) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({ name, description }),
-    });
-  }
-
-  updateAvatar(url) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({ avatar: url }),
-    });
-  }
-}
+};
