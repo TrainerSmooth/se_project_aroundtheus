@@ -1,15 +1,15 @@
 import { handleEscUpEsc } from "core-js/core/object";
 
-export const imageModalWindow = document.querySelector(".popup__image");
-export const imageCaption = imageModalWindow.querySelector(".popup__caption");
+export const imagemodalWindow = document.querySelector(".popup__image");
+export const imageCaption = imagemodalWindow.querySelector(".popup__caption");
 
 export const closeModal = (modalWindow) => {
-  modalWindow.classList.remove("popup_opened");
+  modalWindow.classList.remove("image-preview-modal");
   document.removeEventListener("keyup", handleEscUp);
 };
 
 export const openModal = (modalWindow) => {
-  modalWindow.classList.add("popup_opened");
+  modalWindow.classList.add("image-preview-modal");
   document.addEventListener("keyup", handleEscUpEsc);
 };
 

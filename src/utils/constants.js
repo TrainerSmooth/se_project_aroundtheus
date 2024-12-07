@@ -1,3 +1,5 @@
+import PopupWithForm from "../components/PopupWithForm";
+
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -46,7 +48,7 @@ export const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
-console.log(cardData);
+console.log(cardListEl);
 
 export const profileModal = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
