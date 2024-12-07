@@ -48,6 +48,6 @@ export const validationSettings = {
 
 console.log(cardData);
 
-export const profileModal = new modalWithForm({
-  modalSelector: "#profile-edit-modal",
+export const profileModal = new PopupWithForm({
+  popupSelector: "#profile-edit-modal",
 });
