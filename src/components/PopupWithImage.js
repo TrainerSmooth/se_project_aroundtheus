@@ -3,32 +3,14 @@ import Popup from "./Popup.js";
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._imageElement = this._popup.querySelector("#modal__image-preview");
-    this._captionElement = this._popup.querySelector(".modal__title");
+    this._imageElement = this._popup.querySelector(".modal__image-preview");
+    this._captionElement = this._popup.querySelector(".modal__caption");
   }
 
-  function(evt) {
-    evt.preventDefault();
-    profileTitle.textContent = profileTitleInput.value;
-    profileDescription.textContent = profileDescriptionInput.value;
-    closeModal(profileEditModal);
-    evt.target.reset();
-  }
-  function(evt) {
-    evt.preventDefault();
-    const name = cardTitleInput.value;
-    const link = cardUrlInput.value;
-    renderCards({ name, link }, cardsWrap);
-    closeModal(addCardModal);
-    evt.target.reset();
-    addFormValidator.disableButton();
-  }
-
-  function(cardData) {
-    previewImageModal.src = cardData.link;
-    previewImageModal.alt = cardData.name;
-    previewCaptionModal.textContent = cardData.name;
-
-    openModal(previewModal);
+  open(card) {
+    super.open();
+    this._imageElement.src = card.link;
+    this._imageElement.alt = card.name;
+    this._captionElement.textContent = card.name;
   }
 }
