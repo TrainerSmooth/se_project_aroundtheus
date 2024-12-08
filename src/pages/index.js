@@ -79,34 +79,6 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
-// Add card form
-const cardSection = {
-  container: document.querySelector(".cards__list"),
-  addItem(cardElement) {
-    this.container.prepend(cardElement);
-  },
-};
-
-function createCard({ Title, url }) {
-  const cardTemplate = document
-    .querySelector("#card-template")
-    .content.querySelector(".card");
-  const cardElement = cardTemplate.cloneNode(true);
-
-  const cardImage = cardElement.querySelector(".card__image");
-  cardImage.src = url;
-  cardImage.alt = Title;
-
-  const cardTitle = cardElement.querySelector(".card__title");
-  cardTitle.textContent = Title;
-
-  cardImage.addEventListener("click", () => {
-    popupWithImage.open({ link: url, name: Title });
-  });
-
-  return cardElement;
-}
-
 const addCardButton = document.querySelector("#profile-add-button");
 addCardButton.addEventListener("click", () => {
   addCardModal.open();
