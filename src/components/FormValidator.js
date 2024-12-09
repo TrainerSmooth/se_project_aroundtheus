@@ -1,6 +1,5 @@
 class FormValidator {
   constructor(settings, formEl) {
-    this._formSelector = settings.formSelector;
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
@@ -55,7 +54,7 @@ class FormValidator {
   _setEventListeners() {
     this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
     this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
-    this.disableButton();
+    this._toggleButton();
 
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
