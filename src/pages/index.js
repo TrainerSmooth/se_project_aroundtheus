@@ -44,6 +44,7 @@ const addCardModal = new PopupWithForm({
     const newCard = createCard({ name: formData.Title, link: formData.url });
     cardSection.addItem(newCard);
     addCardModal.close();
+    addCardFormValidator.disableButton();
   },
 });
 addCardModal.setEventListeners();
@@ -89,3 +90,31 @@ const addCardFormValidator = new FormValidator(
   document.querySelector("#add-card-form")
 );
 addCardFormValidator.enableValidation();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const profileEditForm = document.querySelector("#profile-edit-form");
+  const addCardForm = document.querySelector("#add-card-form");
+
+  const profileFormValidator = new FormValidator(
+    validationSettings,
+    profileEditForm
+  );
+  profileFormValidator.enableValidation();
+  const cardFormValidator = new FormValidator(validationSettings, addCardForm);
+
+  profileFormValidator.enableValidation();
+  cardFormValidator.enableValidation();
+
+  // Reset validators when modals open
+  document
+    .querySelector("#profile-edit-button")
+    .addEventListener("click", () => {
+      profileFormValidator.resetValidation();
+    });
+
+  document
+    .querySelector("#profile-add-button")
+    .addEventListener("click", () => {
+      cardFormValidator.resetValidation();
+    });
+});

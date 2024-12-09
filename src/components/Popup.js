@@ -4,23 +4,19 @@ export default class Popup {
     this._closeButton = this._popup.querySelector(".modal__close");
     this._handleEscClose = this._handleEscClose.bind(this);
   }
-
   open() {
     this._popup.classList.add("modal_opened");
     document.addEventListener("keydown", this._handleEscClose);
   }
-
   close() {
     this._popup.classList.remove("modal_opened");
     document.removeEventListener("keydown", this._handleEscClose);
   }
-
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close();
     }
   }
-
   setEventListeners() {
     if (this._closeButton) {
       this._closeButton.addEventListener("click", () => {
@@ -29,7 +25,6 @@ export default class Popup {
     } else {
       console.error("Close button not found in the popup:", this._popup);
     }
-
     this._popup.addEventListener("mousedown", (evt) => {
       if (evt.target.classList.contains("modal_opened")) {
         this.close();
