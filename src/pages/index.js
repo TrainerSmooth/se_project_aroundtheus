@@ -78,7 +78,7 @@ const addCardFormValidator = new FormValidator(
 );
 addCardFormValidator.enableValidation();
 document.addEventListener("DOMContentLoaded", () => {
-  const profileEditForm = document.querySelector("#profile-edit-form");
+  const profileEditForm = document.querySelector("#profile-edit-modal");
   const addCardForm = document.querySelector("#add-card-form");
   const profileFormValidator = new FormValidator(
     validationSettings,
