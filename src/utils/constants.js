@@ -49,7 +49,3 @@ export const validationSettings = {
 };
 
 console.log(cardListEl);
-
-export const profileModal = new PopupWithForm({
-  popupSelector: "#profile-edit-modal",
-});
