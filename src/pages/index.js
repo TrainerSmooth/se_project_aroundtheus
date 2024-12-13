@@ -86,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     profileEditForm
   );
   profileFormValidator.enableValidation();
-  const cardFormValidator = new FormValidator(validationSettings, addCardForm);
   profileFormValidator.enableValidation();
   cardFormValidator.enableValidation();
   // Reset validators when modals open
@@ -95,9 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", () => {
       profileFormValidator.resetValidation();
     });
-  document
-    .querySelector("#profile-add-button")
-    .addEventListener("click", () => {
-      cardFormValidator.resetValidation();
-    });
+  document.addEventListener("click", () => {
+    cardFormValidator.resetValidation();
+  });
 });
