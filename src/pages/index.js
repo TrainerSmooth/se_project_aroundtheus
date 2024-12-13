@@ -11,7 +11,7 @@ import {
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import UserInfo from "../components/userinfo.js";
+import UserInfo from "../components/UserInfo.js";
 // Initialize the image modal first
 const imageModal = new PopupWithImage("#image-preview-modal");
 imageModal.setEventListeners();
@@ -37,6 +37,7 @@ const addCardModal = new PopupWithForm({
   handleFormSubmit: (formData) => {
     const newCard = createCard({ name: formData.Title, link: formData.url });
     cardSection.addItem(newCard);
+    addCardModal.close();
     addCardFormValidator.disableButton();
   },
 });
