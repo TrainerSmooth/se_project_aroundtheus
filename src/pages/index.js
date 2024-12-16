@@ -6,22 +6,25 @@ import {
   initialCards,
   selectors,
   validationSettings,
-  cardAddForm,
-  profileEditForm,
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-// Initialize the image modal first
+
+// Initialize the image modal
 const imageModal = new PopupWithImage("#image-preview-modal");
 imageModal.setEventListeners();
+
 function openPreviewModal(cardData) {
   imageModal.open(cardData);
 }
+
 function createCard(data) {
   const card = new Card(data, "#card-template", openPreviewModal);
   return card.getView();
 }
+
+// Initialize Section for rendering cards
 const cardSection = new Section({
   renderer: (item) => {
     const cardEl = createCard(item);
@@ -30,7 +33,23 @@ const cardSection = new Section({
   selector: selectors.cardSelection,
 });
 cardSection.renderItems(initialCards);
-// Other modal and form initializations
+
+// Initialize User Info
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  infoSelector: ".profile__description",
+});
+
+// Profile Edit Modal
+const profileModal = new PopupWithForm({
+  popupSelector: "#profile-edit-modal",
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
+    profileModal.close();
+  },
+});
+profileModal.setEventListeners();
+
 // Add Card Modal
 const addCardModal = new PopupWithForm({
   popupSelector: "#add-card-modal",
@@ -42,58 +61,37 @@ const addCardModal = new PopupWithForm({
   },
 });
 addCardModal.setEventListeners();
-// Profile Modal
-const profileModal = new PopupWithForm({
-  popupSelector: "#profile-edit-modal",
-  handleFormSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
-    profileModal.close();
-  },
-});
-profileModal.setEventListeners();
-// User Info
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  infoSelector: ".profile__description",
-});
-// Profile Edit Button
+
+// Form Validators
+const profileForm = document.forms["profile-form"]; // Get form using 'name' attribute
+const cardForm = document.forms["add-card-form"]; // Get form using 'name' attribute
+
+const profileFormValidator = new FormValidator(validationSettings, profileForm);
+profileFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(validationSettings, cardForm);
+addCardFormValidator.enableValidation();
+
+// Inputs for profile form
+const profileTitleInput = document.querySelector("#profile-title-input");
+const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
+
+// Profile Edit Button Listener
 const profileEditButton = document.querySelector("#profile-edit-button");
 profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
   profileTitleInput.value = userData.title;
   profileDescriptionInput.value = userData.description;
+
+  profileFormValidator.resetValidation(); // Reset validation when opening
   profileModal.open();
 });
-// Inputs
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
+
+// Add Card Button Listener
 const addCardButton = document.querySelector("#profile-add-button");
 addCardButton.addEventListener("click", () => {
+  addCardFormValidator.resetValidation(); // Reset validation when opening
   addCardModal.open();
-});
-const addCardFormValidator = new FormValidator(
-  validationSettings,
-  document.querySelector("#add-card-form")
-);
-addCardFormValidator.enableValidation();
-document.addEventListener("DOMContentLoaded", () => {
-  const profileEditForm = document.querySelector("#profile-edit-modal");
-  const addCardForm = document.querySelector("#add-card-form");
-  const profileFormValidator = new FormValidator(
-    validationSettings,
-    profileEditForm
-  );
-  profileFormValidator.enableValidation();
-  const cardFormValidator = new FormValidator(validationSettings, addCardForm);
-  profileFormValidator.enableValidation();
-  cardFormValidator.enableValidation();
-  // Reset validators when modals open
-  document.addEventListener("click", () => {
-    profileFormValidator.resetValidation();
-  });
-  document.addEventListener("click", () => {
-    cardFormValidator.resetValidation();
-  });
 });
