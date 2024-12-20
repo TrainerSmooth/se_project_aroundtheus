@@ -59,6 +59,21 @@
   margin-bottom: 54px;
 }
 
+.modal__container.modal__container_delete-card {
+  background-color: #fff;
+  margin: auto;
+  width: 430px;
+  height: 181px;
+  padding: 36px;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.modal__container_avatar-edit {
+  height: 272px;
+}
+
 .modal__close {
   background-image: url(../images/Close\ Icon.svg);
   border: none;

@@ -170,6 +170,27 @@
       </div>
     </div>
 
+    <!--Avatar Modal-->
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container modal__container_avatar-edit">
+        <button class="modal__close" id="avatar-modal-close-button"></button>
+        <p class="modal__heading">Change Profile Picture</p>
+        <form class="modal__form">
+          <div class="modal__avatar">
+            <input
+              class="modal__input modal__input_avatar-edit"
+              type="url"
+              name="avatar"
+              id="avatar-url-input"
+              placeholder="Image Link"
+              required
+            />
+          </div>
+          <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
     <!-- image preview -->
     <div class="modal" id="image-preview-modal">
       <div class="modal__preview-container">
@@ -180,6 +201,17 @@
         ></button>
         <img class="modal__image-preview" src="" alt="" />
         <p class="modal__caption"></p>
+      </div>
+    </div>
+
+    <!--Card Delete Modal-->
+    <div class="modal" id="card-delete-modal">
+      <div class="modal__container modal__container_delete-card">
+        <button class="modal__close" id="delete-modal-close-button"></button>
+        <p class="modal__heading modal__heading_delete-card">Are you sure?</p>
+        <form class="modal__form" id="delete-card-form">
+          <button class="modal__button">Yes</button>
+        </form>
       </div>
     </div>
 
