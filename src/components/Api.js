@@ -18,7 +18,7 @@ export class Api {
     return Promise.reject(err);
   }
 
-  // 1. Get initial user information
+  // 1. Get user information
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
@@ -27,8 +27,8 @@ export class Api {
       .catch(this._handleError);
   }
 
-  // 2. Update user profile info (PATCH)
-  updateUserProfile({ name, about }) {
+  // 2. Update user profile information
+  updateUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -39,7 +39,7 @@ export class Api {
   }
 
   // 3. Update user avatar
-  updateUserAvatar(avatarUrl) {
+  updateAvatar(avatarUrl) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -49,8 +49,8 @@ export class Api {
       .catch(this._handleError);
   }
 
-  // 4. Get all cards
-  getInitialCards() {
+  // 4. Fetch all cards
+  getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
@@ -80,7 +80,7 @@ export class Api {
   }
 
   // 7. Like a card
-  likeCard(cardId) {
+  addLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
@@ -89,8 +89,8 @@ export class Api {
       .catch(this._handleError);
   }
 
-  // 8. Dislike a card
-  dislikeCard(cardId) {
+  // 8. Remove like from a card
+  removeLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
@@ -98,14 +98,9 @@ export class Api {
       .then(this._checkResponse)
       .catch(this._handleError);
   }
-
-  // 9. Update card likes dynamically (PUT or DELETE based on isLiked)
-  updateCardLike(cardId, isLiked) {
-    return isLiked ? this.dislikeCard(cardId) : this.likeCard(cardId);
-  }
 }
 
-// Initialize the API class
+// Initialize the API instance
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
