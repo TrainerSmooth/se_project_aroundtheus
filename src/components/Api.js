@@ -1,10 +1,10 @@
 export class Api {
-  constructor(options) {
-    this._baseUrl = options.baseUrl; // Base API URL
-    this._headers = options.headers; // Headers like authorization token
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
-  // A generic method to check server response
+  // Check server response
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -50,12 +50,17 @@ export class Api {
   }
 
   // 4. Fetch all cards
-  getCards() {
+  getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
       .then(this._checkResponse)
       .catch(this._handleError);
+  }
+
+  // Legacy alias for getInitialCards
+  getCards() {
+    return this.getInitialCards();
   }
 
   // 5. Add a new card
@@ -98,9 +103,16 @@ export class Api {
       .then(this._checkResponse)
       .catch(this._handleError);
   }
+
+  // 9. Fetch user info and cards together
+  getAppData() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()])
+      .then(([userInfo, cards]) => ({ userInfo, cards }))
+      .catch(this._handleError);
+  }
 }
 
-// Initialize the API instance
+// Initialize API instance
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {

@@ -8,11 +8,23 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
 
-// Initialize API
+// Provided token object
+const tokenData = {
+  user: {
+    name: "Placeholder name",
+    about: "Placeholder description",
+    avatar:
+      "https://practicum-content.s3.amazonaws.com/resources/avatar_placeholder_1704989734.svg",
+    _id: "fcb4e5e6e3cc8945a1ab9def",
+  },
+  token: "ee59e3de-658f-4b92-9a5b-87805c188487",
+};
+
+// Initialize API with the dynamic token
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: tokenData.token, // Use the token dynamically
     "Content-Type": "application/json",
   },
 });
