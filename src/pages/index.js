@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import { selectors, validationSettings } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js"; // Import PopupWithConfirm
 import UserInfo from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
 
@@ -24,7 +25,7 @@ const tokenData = {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: tokenData.token, // Use the token dynamically
+    authorization: tokenData.token,
     "Content-Type": "application/json",
   },
 });
@@ -68,7 +69,7 @@ function createCard(data) {
         .catch((err) => console.error(`Error updating like status: ${err}`));
     },
     (cardId) => {
-      deleteCardModal.open(cardId); // Pass card ID to delete modal
+      openDeleteCardModal(cardId); // Pass card ID to delete modal
     }
   );
   return card.getView();
@@ -128,7 +129,7 @@ addCardModal.setEventListeners();
 
 // Avatar Modal
 const avatarModal = new PopupWithForm({
-  popupSelector: "#avatar-edit-modal",
+  popupSelector: "#avatar-modal",
   handleFormSubmit: (formData) => {
     api
       .updateAvatar(formData.avatarUrl)
@@ -142,19 +143,25 @@ const avatarModal = new PopupWithForm({
 avatarModal.setEventListeners();
 
 // Confirm Delete Modal
-const deleteCardModal = new PopupWithForm({
-  popupSelector: "#delete-card-modal",
-  handleFormSubmit: (cardId) => {
-    api
+const deleteCardModal = new PopupWithConfirm("#card-delete-modal");
+deleteCardModal.setEventListeners();
+
+function openDeleteCardModal(cardId) {
+  deleteCardModal.setSubmitAction(() => {
+    deleteCardModal.setIsLoading(true);
+    return api
       .deleteCard(cardId)
       .then(() => {
         document.getElementById(cardId).remove();
         deleteCardModal.close();
       })
-      .catch((err) => console.error(`Error deleting card: ${err}`));
-  },
-});
-deleteCardModal.setEventListeners();
+      .catch((err) => console.error(`Error deleting card: ${err}`))
+      .finally(() => {
+        deleteCardModal.setIsLoading(false);
+      });
+  });
+  deleteCardModal.open();
+}
 
 // Form Validators
 const profileForm = document.forms["profile-form"];
