@@ -121,4 +121,15 @@ const api = new Api({
   },
 });
 
+const newCard = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+fetch("https://around-api.en.tripleten-services.com/v1/cards")
+  .then((res) => res.json())
+  .then((cards) => {
+    cards.forEach((card) => renderCard(card));
+  })
+  .catch((err) => console.error("Error fetching cards:", err));
 export default api;

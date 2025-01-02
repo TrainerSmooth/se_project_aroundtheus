@@ -1,5 +1,3 @@
-import PopupWithForm from "../components/PopupWithForm";
-
 // Reference to modals
 export const cardAddForm = document.querySelector("#add-card-modal");
 export const profileEditForm = document.querySelector("#profile-edit-modal");

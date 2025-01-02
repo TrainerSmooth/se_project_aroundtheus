@@ -14,8 +14,7 @@ const tokenData = {
   user: {
     name: "Placeholder name",
     about: "Placeholder description",
-    avatar:
-      "https://practicum-content.s3.amazonaws.com/resources/avatar_placeholder_1704989734.svg",
+    avatar: "<%=require('./images/oldman.jpg')%>",
     _id: "fcb4e5e6e3cc8945a1ab9def",
   },
   token: "ee59e3de-658f-4b92-9a5b-87805c188487",
@@ -78,10 +77,9 @@ function createCard(data) {
 // Initialize Section for rendering cards
 const cardSection = new Section({
   renderer: (item) => {
-    const cardEl = createCard(item);
-    cardSection.addItem(cardEl);
+    return createCard(item); // Create and return the card element
   },
-  selector: selectors.cardSelection,
+  selector: selectors.cardSelection, // The CSS selector for the card container
 });
 
 // Fetch and render cards
