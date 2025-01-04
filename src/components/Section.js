@@ -25,11 +25,3 @@ export default class Section {
     this._container.prepend(element);
   }
 }
-
-// Initialize Section for rendering cards
-const cardSection = new Section({
-  renderer: (item) => {
-    return createCard(item); // Return the card element created
-  },
-  selector: selectors.cardSelection, // The CSS selector for the card container
-});
