@@ -7,7 +7,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js"; // Import PopupWithConfirm
 import UserInfo from "../components/UserInfo.js";
-import { Api } from "../components/Api.js";
+import api from "../components/Api.js"; // Import the default `api` instance
 
 // Provided token object
 const tokenData = {
@@ -19,15 +19,6 @@ const tokenData = {
   },
   token: "ee59e3de-658f-4b92-9a5b-87805c188487",
 };
-
-// Initialize API with the dynamic token
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: tokenData.token,
-    "Content-Type": "application/json",
-  },
-});
 
 // Initialize User Info
 const userInfo = new UserInfo({
@@ -196,4 +187,15 @@ const avatarEditButton = document.querySelector("#avatar-edit-button");
 avatarEditButton.addEventListener("click", () => {
   avatarFormValidator.resetValidation();
   avatarModal.open();
+});
+
+const initialCards = [
+  { name: "Beautiful Lake", link: "<%=require('./images/lago.jpg')%>" },
+  { name: "Mountain Reflection", link: "<%=require('./images/vanoise.jpg')%>" },
+];
+
+// Render initial static cards
+initialCards.forEach((cardData) => {
+  const cardEl = createCard(cardData);
+  cardSection.addItem(cardEl);
 });
