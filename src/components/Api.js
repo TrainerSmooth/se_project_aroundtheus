@@ -13,22 +13,11 @@ class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
-  // Handle network errors or unexpected issues
-  _handleError = (err) => {
-    console.error("API Error:", err);
-    return Promise.reject(err);
-  };
-
   // 1. Get user information
   getUserInfo() {
-    return (
-      fetch`${this._baseUrl}/users/me`,
-      {
-        headers: this._headers,
-      }
-        .then(this._checkResponse)
-        .catch(this._handleError)
-    );
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 
   // 2. Update user profile information
@@ -37,9 +26,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ name, about }),
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    }).then(this._checkResponse);
   }
 
   // 3. Update user avatar
@@ -48,18 +35,14 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar: avatarUrl }),
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    }).then(this._checkResponse);
   }
 
   // 4. Fetch all cards
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    }).then(this._checkResponse);
   }
 
   // Legacy alias for getInitialCards
@@ -73,9 +56,7 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({ name, link }),
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    }).then(this._checkResponse);
   }
 
   // 6. Delete a card
@@ -83,9 +64,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    }).then(this._checkResponse);
   }
 
   // 7. Like a card
@@ -93,9 +72,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    }).then(this._checkResponse);
   }
 
   // 8. Remove like from a card
@@ -103,16 +80,14 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    }).then(this._checkResponse);
   }
 
   // 9. Fetch user info and cards together
   getAppData() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()])
-      .then(([userInfo, cards]) => ({ userInfo, cards }))
-      .catch(this._handleError);
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]).then(
+      ([userInfo, cards]) => ({ userInfo, cards })
+    );
   }
 }
 
