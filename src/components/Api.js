@@ -14,18 +14,21 @@ class Api {
   }
 
   // Handle network errors or unexpected issues
-  _handleError(err) {
+  _handleError = (err) => {
     console.error("API Error:", err);
     return Promise.reject(err);
-  }
+  };
 
   // 1. Get user information
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-    })
-      .then(this._checkResponse)
-      .catch(this._handleError);
+    return (
+      fetch`${this._baseUrl}/users/me`,
+      {
+        headers: this._headers,
+      }
+        .then(this._checkResponse)
+        .catch(this._handleError)
+    );
   }
 
   // 2. Update user profile information
@@ -115,9 +118,9 @@ class Api {
 
 // Create an instance of the Api class
 const api = new Api({
-  baseUrl: "https://your-api-url.com", // Replace with your actual API URL
+  baseUrl: "https://around-api.en.tripleten-services.com/v1.", // Replace with your actual API URL
   headers: {
-    authorization: "Bearer your-auth-token", // Replace with your actual token if applicable
+    authorization: "ee59e3de-658f-4b92-9a5b-87805c188487", // Replace with your actual token if applicable
     "Content-Type": "application/json",
   },
 });

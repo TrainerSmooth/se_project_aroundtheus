@@ -12,6 +12,16 @@ export default class UserInfo {
     };
   }
 
+  getUserInfo() {
+    console.log("Fetching user info...");
+    console.log("Headers:", this._headers);
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    })
+      .then(this._checkResponse)
+      .catch(this._handleError);
+  }
+
   setUserInfo({ title, description }) {
     if (title) this.profileTitle.textContent = title;
     if (description) this.profileDescription.textContent = description;
