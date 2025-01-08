@@ -93,7 +93,7 @@ class Api {
 
 // Create an instance of the Api class
 const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1.", // Replace with your actual API URL
+  baseUrl: "https://around-api.en.tripleten-services.com/v1", // Replace with your actual API URL
   headers: {
     authorization: "ee59e3de-658f-4b92-9a5b-87805c188487", // Replace with your actual token if applicable
     "Content-Type": "application/json",

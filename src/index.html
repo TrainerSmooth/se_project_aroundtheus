@@ -170,12 +170,22 @@
       </div>
     </div>
 
+    <!--Profile image -->
+    <div class="profile__image-container">
+      <img
+        src="<%=require('./images/oldman.jpg')%>"
+        alt="Avatar"
+        class="profile__image"
+      />
+      <button class="profile__image-button" id="avatar-edit-button"></button>
+    </div>
+
     <!--Avatar Modal-->
     <div class="modal" id="avatar-modal">
       <div class="modal__container modal__container_avatar-edit">
         <button class="modal__close" id="avatar-modal-close-button"></button>
         <p class="modal__heading">Change Profile Picture</p>
-        <form class="modal__form">
+        <form class="modal__form" name="avatar-form">
           <div class="modal__avatar">
             <input
               class="modal__input modal__input_avatar-edit"
@@ -219,13 +229,13 @@
     <ul class="cards__list">
       <li class="card">
         <img
-          src="images/bald-mountains.jpg"
-          alt="bald-mountains"
+          src="<%=require('./images/lake-louise.jpg')%>"
+          alt="lake-louise"
           class="card__image"
         />
         <button class="card__trash-button" type="button"></button>
         <div class="card__description">
-          <h2 class="card__title">Beautiful Beach</h2>
+          <h2 class="card__title">Lake Louise</h2>
           <button
             type="button"
             class="card__like-button"
@@ -235,13 +245,29 @@
       </li>
       <li class="card">
         <img
-          src="https://example.com/images/mountain.jpg"
-          alt="Mountain Sunset"
+          src="<%=require('./images/bald-mountains.jpg')%>"
+          alt="bald-mountains"
           class="card__image"
         />
         <button class="card__trash-button" type="button"></button>
         <div class="card__description">
-          <h2 class="card__title">Mountain Sunset</h2>
+          <h2 class="card__title">Bald Mountains</h2>
+          <button
+            type="button"
+            class="card__like-button"
+            id="card-like-button"
+          ></button>
+        </div>
+      </li>
+      <li class="card">
+        <img
+          src="<%=require('./images/yosemite.jpg')%>"
+          alt="lago"
+          class="card__image"
+        />
+        <button class="card__trash-button" type="button"></button>
+        <div class="card__description">
+          <h2 class="card__title">Yosamite Valley</h2>
           <button
             type="button"
             class="card__like-button"
