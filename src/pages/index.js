@@ -73,6 +73,11 @@ const cardSection = new Section({
   selector: selectors.cardSelection, // The CSS selector for the card container
 });
 
+api
+  .getUserInfo()
+  .then((data) => console.log("User Info:", data))
+  .catch((err) => console.error(err));
+
 // Fetch and render cards
 api
   .getCards()
