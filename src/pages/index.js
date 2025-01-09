@@ -193,14 +193,3 @@ avatarEditButton.addEventListener("click", () => {
   avatarFormValidator.resetValidation();
   avatarModal.open();
 });
-
-const initialCards = [
-  { name: "Beautiful Lake", link: "<%=require('./images/lago.jpg')%>" },
-  { name: "Mountain Reflection", link: "<%=require('./images/vanoise.jpg')%>" },
-];
-
-// Render initial static cards
-initialCards.forEach((cardData) => {
-  const cardEl = createCard(cardData);
-  cardSection.addItem(cardEl);
-});
