@@ -33,6 +33,25 @@ function openPreviewModal(cardData) {
   imageModal.open(cardData);
 }
 
+// Confirm Delete Modal
+const deleteCardModal = new PopupWithConfirm("#card-delete-modal");
+deleteCardModal.setEventListeners();
+
+function openDeleteCardModal(cardId, cardElement) {
+  deleteCardModal.setSubmitAction(() => {
+    deleteCardModal.setIsLoading(true);
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        cardElement.remove(); // Remove the card from the DOM
+        deleteCardModal.close();
+      })
+      .catch((err) => console.error(`Error deleting card: ${err}`))
+      .finally(() => deleteCardModal.setIsLoading(false));
+  });
+  deleteCardModal.open();
+}
+
 // Function to create a new card
 function createCard(data) {
   const card = new Card(
@@ -48,7 +67,7 @@ function createCard(data) {
         .catch((err) => console.error(`Error updating like status: ${err}`));
     },
     (cardId) => {
-      openDeleteCardModal(cardId); // Pass card ID to delete modal
+      openDeleteCardModal(cardId, card.getView()); // Pass card element to delete modal
     }
   );
   return card.getView();
@@ -120,25 +139,6 @@ const avatarModal = new PopupWithForm({
   },
 });
 avatarModal.setEventListeners();
-
-// Confirm Delete Modal
-const deleteCardModal = new PopupWithConfirm("#card-delete-modal");
-deleteCardModal.setEventListeners();
-
-function openDeleteCardModal(cardId) {
-  deleteCardModal.setSubmitAction(() => {
-    deleteCardModal.setIsLoading(true);
-    api
-      .deleteCard(cardId)
-      .then(() => {
-        document.getElementById(cardId).remove();
-        deleteCardModal.close();
-      })
-      .catch((err) => console.error(`Error deleting card: ${err}`))
-      .finally(() => deleteCardModal.setIsLoading(false));
-  });
-  deleteCardModal.open();
-}
 
 // Form Validators
 const profileForm = document.forms["profile-form"];
