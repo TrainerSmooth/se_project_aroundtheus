@@ -5,19 +5,9 @@ import Section from "../components/Section.js";
 import { selectors, validationSettings } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithConfirm from "../components/PopupWithConfirm.js"; // Import PopupWithConfirm
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
-import api from "../components/Api.js"; // Import the default `api` instance
-// Provided token object
-const tokenData = {
-  user: {
-    name: "Placeholder name",
-    about: "Placeholder description",
-    avatar: "<%=require('./images/oldman.jpg')%>",
-    _id: "fcb4e5e6e3cc8945a1ab9def",
-  },
-  token: "ee59e3de-658f-4b92-9a5b-87805c188487",
-};
+import api from "../components/Api.js";
 
 // Initialize User Info
 const userInfo = new UserInfo({
@@ -53,7 +43,7 @@ function createCard(data) {
       const apiCall = isLiked ? api.removeLike(cardId) : api.addLike(cardId);
       apiCall
         .then((updatedCard) => {
-          card.updateLikes(updatedCard.likes.length);
+          card.updateLikes(updatedCard.likes.length); // Updates likes in the UI
         })
         .catch((err) => console.error(`Error updating like status: ${err}`));
     },
@@ -67,15 +57,11 @@ function createCard(data) {
 // Initialize Section for rendering cards
 const cardSection = new Section({
   renderer: (item) => {
-    return createCard(item); // Create and return the card element
+    const cardEl = createCard(item); // Create and return the card element
+    return cardEl;
   },
   selector: selectors.cardSelection, // The CSS selector for the card container
 });
-
-api
-  .getUserInfo()
-  .then((data) => console.log("User Info:", data))
-  .catch((err) => console.error(err));
 
 // Fetch and render cards
 api
@@ -142,16 +128,14 @@ deleteCardModal.setEventListeners();
 function openDeleteCardModal(cardId) {
   deleteCardModal.setSubmitAction(() => {
     deleteCardModal.setIsLoading(true);
-    return api
+    api
       .deleteCard(cardId)
       .then(() => {
         document.getElementById(cardId).remove();
         deleteCardModal.close();
       })
       .catch((err) => console.error(`Error deleting card: ${err}`))
-      .finally(() => {
-        deleteCardModal.setIsLoading(false);
-      });
+      .finally(() => deleteCardModal.setIsLoading(false));
   });
   deleteCardModal.open();
 }
@@ -174,6 +158,11 @@ avatarFormValidator.enableValidation();
 const profileEditButton = document.querySelector("#profile-edit-button");
 profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
+  const profileTitleInput = document.querySelector("#profile-title-input");
+  const profileDescriptionInput = document.querySelector(
+    "#profile-description-input"
+  );
+
   profileTitleInput.value = userData.title;
   profileDescriptionInput.value = userData.description;
 
