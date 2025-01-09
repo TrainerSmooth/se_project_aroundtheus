@@ -8,7 +8,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js"; // Import PopupWithConfirm
 import UserInfo from "../components/UserInfo.js";
 import api from "../components/Api.js"; // Import the default `api` instance
-
 // Provided token object
 const tokenData = {
   user: {
