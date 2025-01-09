@@ -22,6 +22,7 @@ api
   .then((userData) => {
     userInfo.setUserInfo({ title: userData.name, description: userData.about });
     userInfo.setAvatar(userData.avatar);
+    userInfo.setUserId(userData._id); // Set user ID for ownership checks
   })
   .catch((err) => console.error(`Error fetching user info: ${err}`));
 
