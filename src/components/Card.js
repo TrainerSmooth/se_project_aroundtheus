@@ -63,22 +63,12 @@ export default class Card {
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._deleteButton = this._cardElement.querySelector(".card__trash-button");
-    this._likesCounter = this._cardElement.querySelector(
-      ".card__likes-counter"
-    );
     this._cardTitle = this._cardElement.querySelector(".card__title");
 
     // Populate card data
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardTitle.textContent = this._name;
-    this._likesCounter.textContent = this._likes.length;
-
-    // Hide the delete button if the card doesn't belong to the current user
-    if (this._ownerId !== this._currentUserId) {
-      this._deleteButton.remove();
-      this._deleteButton = null;
-    }
 
     this._setEventListeners();
     return this._cardElement;
