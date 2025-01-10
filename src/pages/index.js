@@ -43,10 +43,13 @@ function openDeleteCardModal(cardId, cardElement) {
     api
       .deleteCard(cardId)
       .then(() => {
-        cardElement.remove(); // Remove the card from the DOM
+        cardElement.remove(); // Remove the card from the DOM immediately after successful deletion
         deleteCardModal.close();
       })
-      .catch((err) => console.error(`Error deleting card: ${err}`))
+      .catch((err) => {
+        console.error(`Error deleting card: ${err}`);
+        alert("Failed to delete the card. Please try again."); // Optional user feedback
+      })
       .finally(() => deleteCardModal.setIsLoading(false));
   });
   deleteCardModal.open();
