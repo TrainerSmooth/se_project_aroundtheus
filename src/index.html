@@ -15,33 +15,35 @@
       <header class="header page__section">
         <img
           src="<%=require('./images/header.svg')%>"
-          alt="Around the U.S."
+          alt="Around the U.S"
           class="header__logo"
         />
       </header>
       <main class="content">
-        <div class="profile__image-container">
-          <img
-            src="<%=require('./images/oldman.jpg')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
-          <button class="profile__image-btn"></button>
-        </div>
-        <div class="profile__info">
-          <h1 class="profile__title">Jacques Cousteau</h1>
+        <section class="profile page__section">
+          <div class="profile__image-container">
+            <img
+              src="<%=require('./images/oldman.jpg')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <button class="profile__image-btn"></button>
+          </div>
+          <div class="profile__info">
+            <h1 class="profile__title">Jacques Cousteau</h1>
+            <button
+              class="profile__edit-button"
+              id="profile-edit-button"
+              type="button"
+            ></button>
+            <p class="profile__description">Explorer</p>
+          </div>
           <button
-            class="profile__edit-button"
-            id="profile-edit-button"
+            class="profile__add-button"
             type="button"
+            id="profile-add-button"
           ></button>
-          <p class="profile__description">Explorer</p>
-        </div>
-        <button
-          class="profile__add-button"
-          type="button"
-          id="profile-add-button"
-        ></button>
+        </section>
         <section class="cards page__section">
           <ul class="cards__list"></ul>
         </section>
