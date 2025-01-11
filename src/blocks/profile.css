@@ -4,6 +4,10 @@
   margin-bottom: 51px;
 }
 
+.profile__image-container {
+  position: relative;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas:
@@ -88,6 +92,20 @@
   object-fit: cover;
   background-position: center;
   margin-right: 24px;
+}
+
+.profile__image-btn {
+  background: url(../images/PencilButton.jpg) center no-repeat;
+  height: 120px;
+  width: 120px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 100%;
+  position: absolute;
+  margin: 48px;
+  opacity: 0;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
