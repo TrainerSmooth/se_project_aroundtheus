@@ -128,7 +128,7 @@ const addCardModal = new PopupWithForm({
 });
 addCardModal.setEventListeners();
 
-// Avatar Modal
+// Avatar Modal (updated for profile__image-btn)
 const avatarModal = new PopupWithForm({
   popupSelector: "#avatar-modal",
   handleFormSubmit: (formData) => {
@@ -179,8 +179,18 @@ addCardButton.addEventListener("click", () => {
   addCardModal.open();
 });
 
-const avatarEditButton = document.querySelector("#avatar-edit-button");
+const avatarEditButton = document.querySelector(".profile__image-btn");
 avatarEditButton.addEventListener("click", () => {
   avatarFormValidator.resetValidation();
   avatarModal.open();
+});
+
+// Dynamic Event Handling for Likes and Delete
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("card__like-button")) {
+    event.target.closest(".card").querySelector(".card__like-button").click();
+  }
+  if (event.target.classList.contains("card__delete-button")) {
+    event.target.closest(".card").querySelector(".card__delete-button").click();
+  }
 });
