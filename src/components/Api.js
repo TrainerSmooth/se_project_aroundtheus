@@ -9,6 +9,7 @@ class Api {
     if (res.ok) {
       return res.json();
     }
+    console.error(`Error ${res.status}: ${res.statusText}`);
     return Promise.reject(`Error: ${res.status}`);
   }
 
@@ -30,11 +31,17 @@ class Api {
 
   // 3. Update user avatar
   updateAvatar(avatarUrl) {
+    console.log("Updating avatar with URL:", avatarUrl);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar: avatarUrl }),
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch((err) => {
+        console.error("Error details:", err); // Log the error details
+        throw err;
+      });
   }
 
   // 4. Fetch all cards

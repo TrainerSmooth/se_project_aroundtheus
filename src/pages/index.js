@@ -136,6 +136,7 @@ const avatarModal = new PopupWithForm({
       .catch((err) => console.error(`Error updating avatar: ${err}`));
   },
 });
+
 avatarModal.setEventListeners();
 
 // Form Validators
