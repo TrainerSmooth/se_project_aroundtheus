@@ -6,6 +6,7 @@ export default class Card {
     handleLikeClick,
     openDeleteModal
   ) {
+    this._isLiked = cardData.isLiked;
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardId = cardData._id;
@@ -63,6 +64,13 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._deleteButton = this._cardElement.querySelector(".card__trash-button");
     this._cardTitle = this._cardElement.querySelector(".card__title");
+
+    // Reflect API response for "liked" state
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
 
     // Populate card data
     this._cardImage.src = this._link;
