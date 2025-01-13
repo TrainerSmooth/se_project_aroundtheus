@@ -4,7 +4,7 @@ export default class PopupWithConfirm extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._form = this._popup.querySelector(".modal__form");
-    this._submitButton = this._form.querySelector(".modal__button");
+    this._submitButton = this._form.querySelector(".modal__button-confirm");
     this._defaultButtonText = this._submitButton.textContent; // Save the default button text
   }
 
