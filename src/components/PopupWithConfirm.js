@@ -5,45 +5,43 @@ export default class PopupWithConfirm extends Popup {
     super(popupSelector);
     this._form = this._popup.querySelector(".modal__form");
     this._submitButton = this._form.querySelector(".modal__button");
-    this._defaultButtonText = this._submitButton.textContent;
-    this._handleSubmit = null; // Ensures the submit action is explicitly set
+    this._defaultButtonText = this._submitButton.textContent; // Save the default button text
   }
 
+  // Method to set the function that will handle the submission
   setSubmitAction(handleSubmit) {
-    if (typeof handleSubmit === "function") {
-      this._handleSubmit = handleSubmit;
-    } else {
-      console.error("Provided submit action is not a function.");
-    }
+    this._handleSubmit = handleSubmit;
   }
 
+  // Add event listeners
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (this._handleSubmit) {
-        this.setIsLoading(true); // Set loading state
+        this.setIsLoading(true); // Set loading state when submission starts
         try {
-          await this._handleSubmit(); // Await the submit action
-          this.close(); // Close the popup after a successful operation
+          await this._handleSubmit(); // Execute the submit action
+          this.close(); // Close popup on success
         } catch (error) {
           console.error("Error during submission:", error);
         } finally {
-          this.setIsLoading(false); // Reset loading state
+          this.setIsLoading(false); // Revert button state regardless of success or failure
         }
       } else {
-        console.warn("Submit action is not defined.");
+        console.error("Submit action is not defined.");
       }
     });
   }
 
+  // Method to display the loading state on the button
   setIsLoading(isLoading) {
     if (isLoading) {
-      this._submitButton.textContent = "Deleting...";
-      this._submitButton.disabled = true;
+      this._submitButton.textContent = "Saving..."; // Set loading text (change to "Deleting..." if needed)
+      this._submitButton.disabled = true; // Disable button during loading
     } else {
-      this._submitButton.textContent = this._defaultButtonText;
-      this._submitButton.disabled = false;
+      this._submitButton.textContent = this._defaultButtonText; // Reset to default text
+      this._submitButton.disabled = false; // Re-enable button
     }
   }
 }

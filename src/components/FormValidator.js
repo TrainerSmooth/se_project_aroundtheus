@@ -9,16 +9,26 @@ class FormValidator {
   }
   _showInputError(inputEl) {
     const errorMsg = this._formEl.querySelector(`#${inputEl.id}-error`);
+    if (!errorMsg) {
+      console.warn(`Error element not found for input: ${inputEl.id}`);
+      return;
+    }
     inputEl.classList.add(this._inputErrorClass);
     errorMsg.textContent = inputEl.validationMessage;
     errorMsg.classList.add(this._errorClass);
   }
+
   _hideInputError(inputEl) {
     const errorMsg = this._formEl.querySelector(`#${inputEl.id}-error`);
+    if (!errorMsg) {
+      console.warn(`Error element not found for input: ${inputEl.id}`);
+      return;
+    }
     inputEl.classList.remove(this._inputErrorClass);
     errorMsg.textContent = "";
     errorMsg.classList.remove(this._errorClass);
   }
+
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
       this._showInputError(inputEl);
