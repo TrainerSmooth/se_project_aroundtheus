@@ -55,7 +55,6 @@ function openDeleteCardModal(cardId, cardElement) {
   deleteCardModal.open();
 }
 
-// Function to create a new card
 function createCard(data) {
   const card = new Card(
     data,
@@ -63,15 +62,11 @@ function createCard(data) {
     openPreviewModal,
     (cardId, isLiked) => {
       const apiCall = isLiked ? api.removeLike(cardId) : api.addLike(cardId);
-      apiCall
-        .then((updatedCard) => {
-          card.updateLikes(updatedCard.likes.length); // Updates likes in the UI
-        })
-        .catch((err) => console.error(`Error updating like status: ${err}`));
+      apiCall.then((updatedCard) => {
+        card.updateLikes(updatedCard.likes); // Updates likes dynamically in the UI
+      });
     },
-    (cardId) => {
-      openDeleteCardModal(cardId, card.getView()); // Pass card element to delete modal
-    }
+    openDeleteCardModal // Pass the delete modal function directly
   );
   return card.getView();
 }
@@ -128,7 +123,7 @@ const addCardModal = new PopupWithForm({
 });
 addCardModal.setEventListeners();
 
-// Avatar Modal (updated for profile__image-btn)
+// Avatar Modal
 const avatarModal = new PopupWithForm({
   popupSelector: "#avatar-modal",
   handleFormSubmit: (formData) => {
@@ -183,14 +178,4 @@ const avatarEditButton = document.querySelector(".profile__image-btn");
 avatarEditButton.addEventListener("click", () => {
   avatarFormValidator.resetValidation();
   avatarModal.open();
-});
-
-// Dynamic Event Handling for Likes and Delete
-document.addEventListener("click", (event) => {
-  if (event.target.classList.contains("card__like-button")) {
-    event.target.closest(".card").querySelector(".card__like-button").click();
-  }
-  if (event.target.classList.contains("card__delete-button")) {
-    event.target.closest(".card").querySelector(".card__delete-button").click();
-  }
 });

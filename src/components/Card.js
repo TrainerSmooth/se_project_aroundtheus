@@ -42,7 +42,6 @@ export default class Card {
 
   // Update the likes display on the card
   updateLikes(likes) {
-    this._likesCounter.textContent = likes;
     this._likeButton.classList.toggle("card__like-button_active");
   }
 
