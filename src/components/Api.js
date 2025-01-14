@@ -1,10 +1,10 @@
-export class Api {
-  constructor(options) {
-    this._baseUrl = options.baseUrl; // Base API URL
-    this._headers = options.headers; // Headers like authorization token
+class Api {
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
-  // A generic method to check server response
+  // Check server response
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -12,15 +12,15 @@ export class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
-  // 1. Get initial user information
+  // 1. Get user information
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
-  // 2. Update user profile info (PATCH)
-  updateUserProfile({ name, about }) {
+  // 2. Update user profile information
+  updateUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -29,7 +29,7 @@ export class Api {
   }
 
   // 3. Update user avatar
-  updateUserAvatar(avatarUrl) {
+  updateAvatar(avatarUrl) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -37,11 +37,16 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  // 4. Get all cards
+  // 4. Fetch all cards
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._checkResponse);
+  }
+
+  // Legacy alias for getInitialCards
+  getCards() {
+    return this.getInitialCards();
   }
 
   // 5. Add a new card
@@ -62,27 +67,40 @@ export class Api {
   }
 
   // 7. Like a card
-  likeCard(cardId) {
+  addLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
-  // 8. Dislike a card
-  dislikeCard(cardId) {
+  // 8. Remove like from a card
+  removeLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
   }
+
+  // 9. Fetch user info and cards together
+  getAppData() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]).then(
+      ([userInfo, cards]) => ({ userInfo, cards })
+    );
+  }
 }
 
-// Initialize the API class
+// Create an instance of the Api class
 const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  baseUrl: "https://around-api.en.tripleten-services.com/v1", // Replace with your actual API URL
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "ee59e3de-658f-4b92-9a5b-87805c188487", // Replace with your actual token if applicable
     "Content-Type": "application/json",
   },
 });
+
+// Debug: Log the api instance to ensure it's defined
+console.log(api);
+
+// Export the api instance
+export default api;
