@@ -128,7 +128,7 @@ const avatarModal = new PopupWithForm({
   popupSelector: "#avatar-modal",
   handleFormSubmit: (formData) => {
     api
-      .updateAvatar(formData.avatarUrl)
+      .updateAvatar(formData.avatar)
       .then((updatedUserData) => {
         userInfo.setAvatar(updatedUserData.avatar);
         avatarModal.close();
