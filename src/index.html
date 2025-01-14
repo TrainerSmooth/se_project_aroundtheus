@@ -136,8 +136,7 @@
         <button class="modal__close" id="avatar-modal-close-button"></button>
         <p class="modal__heading">Change Profile Picture</p>
         <form class="modal__form" name="avatar-form">
-          <!-- Input wrapped inside a label -->
-          <label class="modal__form-container">
+          <div class="modal__avatar">
             <input
               class="modal__input modal__input_avatar-edit"
               type="url"
@@ -148,7 +147,7 @@
             />
             <!-- Error message span -->
             <span class="modal__error" id="avatar-url-input-error"></span>
-          </label>
+          </div>
           <button class="modal__button">Save</button>
         </form>
       </div>
