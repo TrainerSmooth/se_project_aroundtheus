@@ -92,6 +92,8 @@ api
 const profileModal = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
   handleFormSubmit: (formData) => {
+    profileModal.setLoading(true); // Show loading state
+
     api
       .updateUserInfo({ name: formData.title, about: formData.description })
       .then((updatedUserData) => {
@@ -101,7 +103,8 @@ const profileModal = new PopupWithForm({
         });
         profileModal.close();
       })
-      .catch((err) => console.error(`Error updating user info: ${err}`));
+      .catch((err) => console.error(`Error updating user info: ${err}`))
+      .finally(() => profileModal.setLoading(false)); // Hide loading state
   },
 });
 profileModal.setEventListeners();
@@ -110,6 +113,8 @@ profileModal.setEventListeners();
 const addCardModal = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (formData) => {
+    addCardModal.setLoading(true); // Show loading state
+
     api
       .addCard({ name: formData.Title, link: formData.url })
       .then((newCard) => {
@@ -118,22 +123,25 @@ const addCardModal = new PopupWithForm({
         addCardModal.close();
         addCardFormValidator.disableButton();
       })
-      .catch((err) => console.error(`Error adding card: ${err}`));
+      .catch((err) => console.error(`Error adding card: ${err}`))
+      .finally(() => addCardModal.setLoading(false)); // Reset button text
   },
 });
 addCardModal.setEventListeners();
 
-// Avatar Modal
 const avatarModal = new PopupWithForm({
   popupSelector: "#avatar-modal",
   handleFormSubmit: (formData) => {
+    avatarModal.setLoading(true); // Show loading state
+
     api
       .updateAvatar(formData.avatar)
       .then((updatedUserData) => {
         userInfo.setAvatar(updatedUserData.avatar);
         avatarModal.close();
       })
-      .catch((err) => console.error(`Error updating avatar: ${err}`));
+      .catch((err) => console.error(`Error updating avatar: ${err}`))
+      .finally(() => avatarModal.setLoading(false)); // Hide loading state
   },
 });
 avatarModal.setEventListeners();
